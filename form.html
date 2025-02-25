@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+    <link rel="stylesheet" href="master.css">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Submit Data via WhatsApp</title>
+</head>
+<body>
+    <form id="whatsapp-form">
+        <label for="fullName">Person Full Name with Father Name (required):</label><br>
+        <input type="text" id="fullName" name="fullName" required><br><br>
+        
+        <label for="idCard">Person ID Card (max 13 numbers):</label><br>
+        <input type="text" id="idCard" name="idCard" maxlength="13" oninput="this.value = this.value.replace(/[^0-9]/g, '')"><br><br>
+        
+        <label for="mauza">Mauza (required):</label><br>
+        <input type="text" id="mauza" name="mauza" required><br><br>
+        
+        <label for="requisiteName">Name of the Requisite:</label><br>
+        <input type="text" id="requisiteName" name="requisiteName"><br><br>
+        
+        <label for="mobile">Mobile of the Requisite:</label><br>
+        <input type="text" id="mobile" name="mobile"><br><br>
+        
+        <button type="button" onclick="submitForm()">Submit</button>
+    </form>
+
+    <script>
+        function submitForm() {
+            var fullName = document.getElementById('fullName').value;
+            var idCard = document.getElementById('idCard').value;
+            var mauza = document.getElementById('mauza').value;
+            var requisiteName = document.getElementById('requisiteName').value;
+            var mobile = document.getElementById('mobile').value;
+
+            var message = 'Person Full Name with Father Name: ' + fullName + '\n'
+                        + 'Person ID Card: ' + idCard + '\n'
+                        + 'Mauza: ' + mauza + '\n'
+                        + 'Name of the Requisite: ' + requisiteName + '\n'
+                        + 'Mobile of the Requisite: ' + mobile;
+
+            var whatsappUrl = 'https://api.whatsapp.com/send?phone=447501159811&text=' + encodeURIComponent(message);
+            window.open(whatsappUrl, '_blank');
+        }
+    </script>
+</body>
+</html>
